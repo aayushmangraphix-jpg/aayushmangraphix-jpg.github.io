@@ -33,7 +33,7 @@ export function PortfolioPage() {
           <div className="pf-rail pf-hp-section">
             <div className="pf-hp-left">
               <h1 className="pf-hp-title">
-                I design products where <em>AI</em> meets enterprise trust.
+                I <em>design</em> products where <em>AI</em> meets enterprise <em>trust</em>.
               </h1>
               <p className="pf-hp-bio">
                 Founding team member at a stealth AI security company, where I shape human–AI
