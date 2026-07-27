@@ -116,46 +116,59 @@ a {
   font-weight: 600;
   text-decoration: none;
   color: var(--pf-ink);
-  z-index: 2;
+  position: relative;
+  z-index: 60;
 }
 
 .pf-nav-toggle {
   position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .pf-nav-toggle span {
-  display: block;
-  width: 1.15rem;
-  height: 1.5px;
-  margin-inline: auto;
+  position: absolute;
+  left: 50%;
+  width: 1.2rem;
+  height: 2px;
+  margin-left: -0.6rem;
   border-radius: 999px;
   background: var(--pf-ink);
-  transition:
-    transform 0.25s var(--pf-ease),
-    opacity 0.2s var(--pf-ease);
+  transition: transform 0.22s var(--pf-ease), opacity 0.18s var(--pf-ease);
+}
+
+.pf-nav-toggle span:nth-child(1) {
+  transform: translateY(-6px);
+}
+
+.pf-nav-toggle span:nth-child(2) {
+  transform: translateY(0);
+}
+
+.pf-nav-toggle span:nth-child(3) {
+  transform: translateY(6px);
 }
 
 .pf-nav-toggle.is-open span:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .pf-nav-toggle.is-open span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .pf-nav-toggle.is-open span:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .pf-nav-links {
@@ -176,27 +189,34 @@ a {
 }
 
 @media (max-width: 639px) {
+  .pf-nav.is-open {
+    border-bottom-color: transparent;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
   .pf-nav-links {
     position: fixed;
     inset: 0;
+    z-index: 55;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.75rem;
     margin: 0;
-    padding: 5rem 1.5rem 2rem;
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(10px);
-    font-size: 1.15rem;
+    padding: 5.5rem 1.5rem 2rem;
+    background: #fff;
+    font-size: 1.2rem;
     font-weight: 500;
+    letter-spacing: -0.02em;
     color: var(--pf-ink-soft);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition:
-      opacity 0.25s var(--pf-ease),
-      visibility 0.25s var(--pf-ease);
+      opacity 0.22s var(--pf-ease),
+      visibility 0.22s var(--pf-ease);
   }
 
   .pf-nav-links.is-open {
