@@ -9,6 +9,7 @@ import {
 import { ExperiencePage } from './ExperiencePage'
 import { CaseStudiesPage } from './CaseStudiesPage'
 import { PortfolioPage } from './PortfolioPage'
+import { TalksPage } from './TalksPage'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/" element={<PortfolioPage />} />
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/case-studies" element={<CaseStudiesPage />} />
+        <Route path="/talks" element={<TalksPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

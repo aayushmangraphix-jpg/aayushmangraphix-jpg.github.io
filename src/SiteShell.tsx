@@ -64,6 +64,9 @@ export function SiteShell({ children }: SiteShellProps) {
             <NavLink to="/case-studies" onClick={closeMenu}>
               Case Studies
             </NavLink>
+            <NavLink to="/talks" onClick={closeMenu}>
+              Talks
+            </NavLink>
             <Link to="/#contact" onClick={closeMenu}>
               Contact
             </Link>
