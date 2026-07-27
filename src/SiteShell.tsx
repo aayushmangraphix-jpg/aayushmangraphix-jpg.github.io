@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 type SiteShellProps = {
   children: React.ReactNode
@@ -7,6 +7,8 @@ type SiteShellProps = {
 
 export function SiteShell({ children }: SiteShellProps) {
   const [navScrolled, setNavScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setNavScrolled(window.scrollY > 12)
@@ -15,18 +17,56 @@ export function SiteShell({ children }: SiteShellProps) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname, location.hash])
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <div className="pf-shell">
-      <header className={`pf-nav ${navScrolled ? 'is-scrolled' : ''}`}>
+      <header className={`pf-nav ${navScrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-open' : ''}`}>
         <div className="pf-nav-inner">
-          <Link to="/" className="pf-nav-brand">
+          <Link to="/" className="pf-nav-brand" onClick={closeMenu}>
             Aayushman Gupta
           </Link>
-          <nav className="pf-nav-links">
-            <Link to="/#about">About</Link>
-            <NavLink to="/experience">Experience</NavLink>
-            <NavLink to="/case-studies">Case Studies</NavLink>
-            <Link to="/#contact">Contact</Link>
+
+          <button
+            type="button"
+            className={`pf-nav-toggle${menuOpen ? ' is-open' : ''}`}
+            aria-expanded={menuOpen}
+            aria-controls="pf-nav-menu"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav
+            id="pf-nav-menu"
+            className={`pf-nav-links${menuOpen ? ' is-open' : ''}`}
+          >
+            <Link to="/#about" onClick={closeMenu}>
+              About
+            </Link>
+            <NavLink to="/experience" onClick={closeMenu}>
+              Experience
+            </NavLink>
+            <NavLink to="/case-studies" onClick={closeMenu}>
+              Case Studies
+            </NavLink>
+            <Link to="/#contact" onClick={closeMenu}>
+              Contact
+            </Link>
           </nav>
         </div>
       </header>
