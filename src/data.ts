@@ -17,48 +17,48 @@ export const founding = [
   {
     company: 'Nutanix',
     claim: 'First designer in India · third globally',
-    logo: '/logos/nutanix.png',
-    logoX: '/logos/nutanix-x.png',
+    logo: 'logos/nutanix.png',
+    logoX: 'logos/nutanix-x.png',
     logoSize: 'sm' as const,
     logoHover: '#8570ff',
   },
   {
     company: 'Rivigo',
     claim: 'Lead Product Designer',
-    logo: '/logos/rivigo.png',
+    logo: 'logos/rivigo.png',
     logoSize: 'xs' as const,
   },
   {
     company: 'Cohesity',
     claim: 'First designer in India · second globally',
-    logo: '/logos/cohesity.png',
+    logo: 'logos/cohesity.png',
     logoSize: 'sm' as const,
   },
   {
     company: 'Domino',
     claim: 'Founding / first designer',
-    logo: '/logos/domino.png',
+    logo: 'logos/domino.png',
   },
   {
     company: 'Prophecy',
     claim: 'Founding / first designer',
-    logo: '/logos/prophecy.png',
+    logo: 'logos/prophecy.png',
   },
   {
     company: 'Traceable',
     claim: 'Founding / first designer',
-    logo: '/logos/traceable.png',
+    logo: 'logos/traceable.png',
     logoSize: 'lg' as const,
   },
   {
     company: 'Onehouse',
     claim: 'Founding / first designer',
-    logo: '/logos/onehouse.png',
+    logo: 'logos/onehouse.png',
   },
   {
     company: 'Cequence',
     claim: 'Principal Product Designer',
-    logo: '/logos/cequence.png',
+    logo: 'logos/cequence.png',
   },
 ]
 

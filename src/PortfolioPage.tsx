@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { asset } from './asset'
 import { competencies, contact, founding } from './data'
 import { CountUp } from './CountUp'
 import { HeroMesh } from './HeroMesh'
@@ -7,10 +8,10 @@ import { SiteShell } from './SiteShell'
 import { useReveal } from './useReveal'
 
 const HERO_PHOTOS = [
-  { src: '/hero/speaking.png', alt: 'Aayushman Gupta speaking at an event' },
-  { src: '/hero/focus.png', alt: 'Aayushman Gupta focused at work' },
+  { src: asset('hero/speaking.png'), alt: 'Aayushman Gupta speaking at an event' },
+  { src: asset('hero/focus.png'), alt: 'Aayushman Gupta focused at work' },
   {
-    src: '/hero/stage.png',
+    src: asset('hero/stage.png'),
     alt: 'Aayushman Gupta presenting Designing for Agentic AI at UX India',
   },
 ]
@@ -87,8 +88,8 @@ export function PortfolioPage() {
                         aria-label={f.company}
                         style={
                           {
-                            '--logo': `url(${f.logo})`,
-                            '--logo-x': `url(${f.logoX})`,
+                            '--logo': `url(${asset(f.logo)})`,
+                            '--logo-x': `url(${asset(f.logoX)})`,
                             '--logo-hover': f.logoHover,
                           } as React.CSSProperties
                         }
@@ -101,7 +102,7 @@ export function PortfolioPage() {
                         className={`pf-logo-mask${sizeClass}`}
                         style={
                           {
-                            '--logo': `url(${f.logo})`,
+                            '--logo': `url(${asset(f.logo)})`,
                             '--logo-hover': f.logoHover,
                           } as React.CSSProperties
                         }
@@ -111,7 +112,7 @@ export function PortfolioPage() {
                     ) : f.logo ? (
                       <img
                         className={`pf-logo-img${sizeClass}`}
-                        src={f.logo}
+                        src={asset(f.logo)}
                         alt={f.company}
                       />
                     ) : (

@@ -23,10 +23,10 @@ export function SiteShell({ children }: SiteShellProps) {
             Aayushman Gupta
           </Link>
           <nav className="pf-nav-links">
-            <a href="/#about">About</a>
+            <Link to="/#about">About</Link>
             <NavLink to="/experience">Experience</NavLink>
             <NavLink to="/case-studies">Case Studies</NavLink>
-            <a href="/#contact">Contact</a>
+            <Link to="/#contact">Contact</Link>
           </nav>
         </div>
       </header>
