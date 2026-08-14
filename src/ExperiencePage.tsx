@@ -103,7 +103,7 @@ export function ExperiencePage() {
               </p>
             </header>
 
-            <ol className="pf-timeline pf-reveal">
+            <ol className="pf-timeline pf-reveal pf-stagger">
               {roles.map((role) => (
                 <li key={`${role.org}-${role.dates}`} className="pf-timeline-item">
                   <div className="pf-timeline-date">

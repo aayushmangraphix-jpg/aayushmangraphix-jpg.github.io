@@ -16,6 +16,45 @@ const HERO_PHOTOS = [
   },
 ]
 
+const COMPETENCY_ICONS = {
+  craft: [
+    'M12 3 4 7v6c0 4.4 3.4 7.3 8 8 4.6-.7 8-3.6 8-8V7l-8-4Z',
+    'm9 12 2 2 4-4',
+  ],
+  ai: [
+    'M12 3v3M12 18v3M3 12h3M18 12h3',
+    'M7.8 7.8 5.7 5.7M16.2 16.2l2.1 2.1M16.2 7.8l2.1-2.1M7.8 16.2l-2.1 2.1',
+    'M12 8.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Z',
+  ],
+  leadership: [
+    'M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20',
+    'M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z',
+    'M17 11a3.5 3.5 0 0 0 0-7M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.35',
+  ],
+  tools: [
+    'M14.7 6.3a4 4 0 0 0-5 5L3.5 17.5a2.1 2.1 0 0 0 3 3l6.2-6.2a4 4 0 0 0 5-5l-2.5 2.5-3-3 2.5-2.5Z',
+  ],
+} as const
+
+function CompetencyIcon({ icon }: { icon: keyof typeof COMPETENCY_ICONS }) {
+  return (
+    <span className="pf-comp-icon" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {COMPETENCY_ICONS[icon].map((path) => (
+          <path key={path} d={path} />
+        ))}
+      </svg>
+    </span>
+  )
+}
+
 export function PortfolioPage() {
   const pageRef = useReveal<HTMLDivElement>()
   const [photosIn, setPhotosIn] = useState(false)
@@ -69,7 +108,7 @@ export function PortfolioPage() {
             <h2 className="pf-logo-heading pf-reveal">
               <span>Where I was the first designer in the room</span>
             </h2>
-            <div className="pf-logo-row pf-reveal">
+            <div className="pf-logo-row pf-reveal pf-stagger">
               {founding.map((f) => {
                 const sizeClass =
                   f.logoSize === 'xs'
@@ -172,16 +211,19 @@ export function PortfolioPage() {
             <div className="pf-reveal max-w-xl mb-8">
               <h2 className="pf-h2">How I work</h2>
             </div>
-            <div className="pf-reveal pf-comp-list">
+            <div className="pf-reveal pf-stagger pf-comp-list">
               {competencies.map((c) => (
-                <div key={c.title}>
-                  <h3 className="text-[15px] font-semibold m-0 mb-1.5">{c.title}</h3>
+                <div key={c.title} className="pf-comp-item">
+                  <CompetencyIcon icon={c.icon} />
+                  <div>
+                    <h3 className="text-[15px] font-semibold m-0 mb-1.5">{c.title}</h3>
                   <p
                     className="m-0 text-[15px] leading-relaxed"
                     style={{ color: 'var(--pf-ink-soft)' }}
                   >
                     {c.body}
                   </p>
+                  </div>
                 </div>
               ))}
             </div>

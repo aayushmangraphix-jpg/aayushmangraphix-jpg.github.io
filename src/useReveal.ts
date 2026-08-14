@@ -5,6 +5,15 @@ export function useReveal<T extends HTMLElement>() {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    const nodes = Array.from(el.querySelectorAll('.pf-reveal'))
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduceMotion) {
+      nodes.forEach((node) => node.classList.add('is-in'))
+      return
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -14,9 +23,11 @@ export function useReveal<T extends HTMLElement>() {
           }
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
+      // Trigger slightly before the element is fully in view so content
+      // is already settling by the time the user scrolls to it.
+      { threshold: 0.05, rootMargin: '0px 0px -8% 0px' },
     )
-    el.querySelectorAll('.pf-reveal').forEach((node) => io.observe(node))
+    nodes.forEach((node) => io.observe(node))
     return () => io.disconnect()
   }, [])
   return ref

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { getLenis } from './smoothScroll'
 
 type SiteShellProps = {
   children: React.ReactNode
@@ -22,9 +23,13 @@ export function SiteShell({ children }: SiteShellProps) {
   }, [location.pathname, location.hash])
 
   useEffect(() => {
+    const lenis = getLenis()
     document.body.style.overflow = menuOpen ? 'hidden' : ''
+    if (menuOpen) lenis?.stop()
+    else lenis?.start()
     return () => {
       document.body.style.overflow = ''
+      getLenis()?.start()
     }
   }, [menuOpen])
 
@@ -66,6 +71,9 @@ export function SiteShell({ children }: SiteShellProps) {
             </NavLink>
             <NavLink to="/talks" onClick={closeMenu}>
               Talks
+            </NavLink>
+            <NavLink to="/spotlight" onClick={closeMenu}>
+              Spotlight
             </NavLink>
             <Link to="/#contact" onClick={closeMenu}>
               Contact

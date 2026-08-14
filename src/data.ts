@@ -64,18 +64,22 @@ export const founding = [
 
 export const competencies = [
   {
+    icon: 'craft' as const,
     title: 'Design & craft',
     body: '0→1 product design, design systems at scale, information architecture, data visualisation, interaction and visual design, rapid prototyping.',
   },
   {
+    icon: 'ai' as const,
     title: 'AI experience',
     body: 'Human–AI collaboration, agentic workflows and handoffs, explainability, auditability and governance, responsible-AI UX frameworks.',
   },
   {
+    icon: 'leadership' as const,
     title: 'Leadership',
     body: 'Design team building and hiring, design direction and strategy, product vision and PRDs, partnership with engineering and product.',
   },
   {
+    icon: 'tools' as const,
     title: 'Tools',
     body: 'Figma, Sketch, Cursor, Claude, MCP-based and AI-assisted design workflows.',
   },

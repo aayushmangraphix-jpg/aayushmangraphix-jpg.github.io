@@ -24,6 +24,35 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Lenis drives scrolling; native smooth behaviour would fight it */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Keep anchor targets clear of the fixed nav */
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -443,15 +472,72 @@ a {
 
 .pf-reveal {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(18px);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.75s var(--pf-ease),
+    transform 0.75s var(--pf-ease);
+}
+
+.pf-reveal.is-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Children of a stagger container ease in one after another */
+.pf-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
   transition:
     opacity 0.6s var(--pf-ease),
     transform 0.6s var(--pf-ease);
 }
 
-.pf-reveal.is-in {
+.pf-stagger.is-in > * {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+.pf-stagger.is-in > *:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.pf-stagger.is-in > *:nth-child(2) {
+  transition-delay: 0.11s;
+}
+.pf-stagger.is-in > *:nth-child(3) {
+  transition-delay: 0.17s;
+}
+.pf-stagger.is-in > *:nth-child(4) {
+  transition-delay: 0.23s;
+}
+.pf-stagger.is-in > *:nth-child(5) {
+  transition-delay: 0.29s;
+}
+.pf-stagger.is-in > *:nth-child(6) {
+  transition-delay: 0.35s;
+}
+.pf-stagger.is-in > *:nth-child(7) {
+  transition-delay: 0.41s;
+}
+.pf-stagger.is-in > *:nth-child(8) {
+  transition-delay: 0.47s;
+}
+.pf-stagger.is-in > *:nth-child(n + 9) {
+  transition-delay: 0.53s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-reveal,
+  .pf-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pf-stagger.is-in > * {
+    transition-delay: 0s;
+  }
 }
 
 /* Logo strip */
@@ -1252,6 +1338,31 @@ a {
 .pf-comp-list {
   display: grid;
   gap: 1.75rem;
+}
+
+.pf-comp-item {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.pf-comp-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.05rem;
+  border: 1px solid color-mix(in srgb, var(--pf-link) 22%, white);
+  border-radius: 0.55rem;
+  background: color-mix(in srgb, var(--pf-link) 5%, white);
+  color: var(--pf-link);
+}
+
+.pf-comp-icon svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 @media (min-width: 768px) {
